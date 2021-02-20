@@ -15,6 +15,16 @@ endgroup
 #fclk0 by default is 50MHz
 apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_external "FIXED_IO, DDR" Master "Disable" Slave "Disable" }  [get_bd_cells processing_system7_0]
 
+#create the 25mhz clk for the ethernet
+startgroup
+    set_property -dict [list CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {25} \
+                        CONFIG.PCW_EN_CLK1_PORT {1}] [get_bd_cells processing_system7_0]
+endgroup
+startgroup
+    make_bd_pins_external  [get_bd_pins processing_system7_0/FCLK_CLK1]
+endgroup
+set_property name eth0_clk [get_bd_ports FCLK_CLK1_0]
+
 
 #modify some dram parameters following https://programmersought.com/article/43024210515/
 startgroup

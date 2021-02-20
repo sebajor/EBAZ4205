@@ -2,6 +2,8 @@
 set_property -dict {LOC W13 IOSTANDARD LVCMOS33} [get_ports r_led];
 set_property -dict {LOC W14 IOSTANDARD LVCMOS33} [get_ports g_led];
 
+#eth0 clk
+set_property -dict {LOC U18 IOSTANDARD LVCMOS33} [get_ports eth0_clk];
 
 #found this constraints in https://github.com/alexlargacha/ebaz4205_fpga
 #they seem to be to make an fsbl
